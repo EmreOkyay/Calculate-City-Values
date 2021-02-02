@@ -81,7 +81,7 @@ class Input:
             self.Month_Copy = self.Month
             self.Year_Copy = self.Year
             self.Stayed_1[self.Day, self.Month, self.Year, self.City_Name] = self.Days_Stayed
-            for j in range(self.Days_Stayed):
+            for j in range(self.Days_Stayed): # If we exceed the month limit, we proceed to the next month
                 if self.Month_Copy in self.BigMonths and (self.Day_Copy+(j+1)) > 31:
                     self.Month_Copy += 1
                     self.Day_Copy = self.Day_Copy+(j+1) - 31
@@ -125,7 +125,7 @@ class Input:
                 self.City_Name_Dic_2[self.Day, self.Month, self.Year] = self.City_Name
 
 
-class Logic(Input):
+class Logic(Input): # Checks if the two different dics have common dates and, what is the original date of those dates
 
     def __init__(self):
         super().__init__(File_1, File_2)
@@ -149,7 +149,7 @@ class Logic(Input):
                     City_Encounter_2.append(City_dic_2[self.Day, self.Month, self.Year])
         return City_Encounter_1, City_Encounter_2, City_dic_1, City_dic_2, Overall_Days, self.Overall_City_Enc
 
-class Output(Logic):
+class Output(Logic): # Finally, we write and display the necessary values
 
     def __init__(self):
         super().__init__()
